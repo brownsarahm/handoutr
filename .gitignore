@@ -1,0 +1,7 @@
+dev-env/
+scratch/
+prototype/
+demo-local
+
+*.egg-info/
+.DStore

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- data-bs-theme="dark" -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{tab_title}</title>
+    <!-- mermaid diagram -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <!-- anchors -->
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <!-- bootstrap for style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- MDE for prompt boxes-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <!-- Marked for rendering question text -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- handout specific -->
+    <link rel="stylesheet" href="handout.css" />
+    <style></style>
+</head>
+
+<body>
+
+
+
+    <nav class="navbar bg-body-tertiary fixed-top source">
+        <div class="container-fluid">
+            <!-- page title -->
+            <div class="printfmted printfillin">
+                <h1>{page_title}</h1>
+            </div>
+            <!-- menu button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- offcanvas -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">About & Control</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                           {about}
+                        </li>
+                        <li class="list-group-item">
+                            {save}
+                        </li>
+                        <li class="list-group-item">
+                            {offline}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+<main class="container mt-5 pt-5 source">
+
+
+    <div class="list-group list-group-numbered list-group-flush">
+        {question_html}
+
+    </div>
+    <!-- end of container -->
+
+
+</main>
+
+
+<!-- print preview box, only displayed for printing; on button click will get content from
+preview boxes -->
+<div class="print-only">
+    <h2 class="source"> Print preview</h2>
+    <div id="combined-preview"></div>
+</div>
+
+
+<!-- add anchors -->
+<script>
+    // not a problem: double escape for python page build
+    anchors.options = {{ placement: 'left', icon: '#' }}
+    anchors.add(".promptgroup");
+</script>
+
+
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+<!-- handout specific js -->
+<script src="handout.js"></script>
+<script>
+    {buttons}
+
+</script>
+</body>
+
+</html>
