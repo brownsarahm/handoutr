@@ -47,7 +47,7 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">About & Control</h5>
+                    <h2 class="offcanvas-title" id="offcanvasNavbarLabel">About & Control</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -78,13 +78,13 @@
     </div>
     <!-- end of container -->
 
-
+<footer>made with <a href="https://brownsarahm.com/handoutr/">handoutr</a> by <a href="https://brownsarahm.com/">brownsarahm</a></footer>
 </main>
 
 
 <!-- print preview box, only displayed for printing; on button click will get content from
 preview boxes -->
-<div class="print-only">
+<div class="print-only" aria-hidden="true">
     <h2 class="source"> Print preview</h2>
     <div id="combined-preview"></div>
 </div>
@@ -94,7 +94,7 @@ preview boxes -->
 <script>
     // not a problem: double escape for python page build
     anchors.options = {{ placement: 'left', icon: '#' }}
-    anchors.add(".promptgroup");
+    anchors.add(".prompttext");
 </script>
 
 

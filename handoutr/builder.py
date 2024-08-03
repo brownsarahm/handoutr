@@ -20,9 +20,28 @@ def parse_question(id, question_segment):
         block delimited with ``` that defines the response with a type that determines
         the type of object on the 
     '''
-    prompt, type_starter, hint = question_segment.split('```')
-    question_type, starter_text = type_starter.split('\n',1)
-    return question_type_objs[question_type](id,prompt,starter_text,hint)
+    # split into the main parts
+    prompt_in, type_starter, hint_md = question_segment.split('```')
+    # extract the type from the starter
+    question_type_in, starter_in = type_starter.split('\n',1)
+
+    # check the hint type
+    hint_typer = {'>': 'hidden', '`':'markdown'}
+    hint_cleaner = {'hidden':lambda s: s[1:].strip(),
+                    'markdown':lambda s: s.replace('`',''),
+                    'small':lambda s: s.strip()}
+    hint_stripped = hint_md.strip()
+    hint_type = hint_typer.get(hint_stripped[0],'small')
+    hint_text = hint_cleaner[hint_type](hint_stripped)
+
+    # strip others
+    prompt = prompt_in.strip()
+    starter_text = starter_in.strip()
+    question_type = question_type_in.strip()
+
+    # TODO: handle missing qtype
+    return question_type_objs[question_type](id,prompt,starter_text,
+                                             hint_text,hint_type)
 
 
 

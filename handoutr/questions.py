@@ -2,15 +2,16 @@ from .utils import load_template_file
 
 class QuestionABC():
 
-    def __init__(self,id,prompt,starter,hint=''):
+    def __init__(self,id,prompt,starter,hint_text='',hint_type='small'):
         '''
         base class for all questions
         '''
         self.template_file = 'question.html'
+        self.hint_type = hint_type
         self.info = {'id':id,
                      'prompt_text':prompt,
                      'starter':starter,
-                     'hint':hint,
+                     'hint_text':hint_text,
                      'function_name':self.function_name}
 
 
@@ -23,7 +24,8 @@ class QuestionABC():
         components = {'question_controller':load_template_file(self.component_dir,'controller.html'),
                       'question_input':load_template_file(self.component_dir,'input.html'),
                       'question_write_in':load_template_file(self.component_dir,'write-in.html'),
-                      'question_preview':load_template_file(self.component_dir,'preview.html')}
+                      'question_preview':load_template_file(self.component_dir,'preview.html'),
+                      'question_hint':load_template_file('hint',self.hint_type +'.html')}
         self.info.update(components)
 
         # insert into question template
@@ -45,13 +47,13 @@ class QuestionABC():
     
 
 class OpenQuestion(QuestionABC):
-    def __init__(self, id, prompt, starter,hint):
+    def __init__(self, id, prompt, starter,hint,hint_type):
         self.component_dir = 'open'
         self.function_name = 'toggleHTML'
-        super().__init__(id, prompt, starter,hint)
+        super().__init__(id, prompt, starter,hint,hint_type)
 
 class MermaidQuestion(QuestionABC):
-    def __init__(self, id, prompt, starter,hint):
+    def __init__(self, id, prompt, starter,hint,hint_type):
         self.component_dir = 'mermaid'
         self.function_name = 'toggleMermaidDiagram'
-        super().__init__(id, prompt, starter,hint)
+        super().__init__(id, prompt, starter,hint,hint_type)

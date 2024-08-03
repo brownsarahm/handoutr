@@ -1,6 +1,11 @@
 // import mermaid from ';
 mermaid.initialize({ startOnLoad: false });
 
+// tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
 // ------------------------------------------------------------------ 
 //  Render the prompts
 // ------------------------------------------------------------------ 
@@ -113,58 +118,6 @@ function toggleMermaidDiagram(targetID,btnID) {
 // ------------------------------------------------------------------ 
 // Concatenate all items with printfmted or printfillin class, put them in a separate div
 //  that is only visible for printing and print 
-function printContentOld(className) {
-    // Select all div elements with the specified class
-    const contentDivs = document.querySelectorAll(`.${className}`);
-
-    // Initialize a variable to hold the concatenated content
-    let concatenatedContent = '';
-
-    // Loop through each div
-    contentDivs.forEach(div => {
-        // Check if the div has a data-previewfx attribute
-        const previewFunctionName = div.getAttribute('data-previewfx');
-        if (previewFunctionName) {
-            // Extract the part of the element's id after the '-'
-            const id = div.id.split('-')[1];
-
-            // Call the function in the data-previewfx attribute with the idSuffix
-            const previewFunction = window[previewFunctionName];
-            if (div.getAttribute('aria-hidden') === 'true' && typeof previewFunction === 'function') {
-                previewFunction(id,id+'-preview');
-                // Wait for the preview function to complete
-                setTimeout(() => {
-                    resolve();
-                }, 100); // Adjust the delay as necessary
-            }
-        }
-
-        // // Append the content of the div to the concatenated content
-        concatenatedContent += div.innerHTML;
-
-       
-    });
-
-    // Select the existing div with the id 'combined-preview'
-    const combinedPreviewDiv = document.getElementById('combined-preview');
-
-    // Set the innerHTML of the combined-preview div to the concatenated content
-    combinedPreviewDiv.innerHTML = concatenatedContent;
-
-    // Make the combined-preview div visible for printing
-    // combinedPreviewDiv.style.display = 'block';
-
-    // Use requestAnimationFrame to ensure the next repaint before printing
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            window.print();
-        }, 1000); // Adjust this delay if necessary
-    });
-
-
-}
-
-
 async function printContent(className) {
     // Select all div elements with the specified class
     const contentDivs = document.querySelectorAll(`.${className}`);
@@ -213,15 +166,11 @@ async function printContent(className) {
     combinedPreviewDiv.innerHTML = concatenatedContent;
 
     // Make the combined-preview div visible for printing
-    combinedPreviewDiv.style.display = 'block';
+    // combinedPreviewDiv.style.display = 'block';
 
     // Trigger the print preview of the browser
     window.print();
 }
-// Hide the combined-preview div after printing
-// combinedPreviewDiv.style.display = 'none';
-// easymde1.togglePreview();
-// easymde2.togglePreview();
 
 // Function to combine text content of all textareas with a specific class on the page
 //  used for both copy and download markdown versions
@@ -253,16 +202,25 @@ function downloadCombinedText(classname,filename) {
 // Function to copy combined text content to the clipboard
 function copyCombinedTextToClipboard(classname,btnID) {
     const combinedText = combineTextAreas(classname);
+    const btn = document.getElementById(btnID);
+
+    const tooltip = bootstrap.Tooltip.getInstance(btn) || new bootstrap.Tooltip(btn);
+    const originalTitle = btn.getAttribute('data-bs-original-title');
+    // const notificationID = 'notification-' + btnID
 
     // Copy combined text content to clipboard
     navigator.clipboard.writeText(combinedText).then(() => {
-        alert('Combined text copied to clipboard!');
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
+        // notify with check mark and tooltip
+        tooltip.setContent({ '.tooltip-inner': 'Copied!' });
+        tooltip.show();
+        btn.querySelector('i').className = 'fa-solid fa-check';
 
-        // Hide notification after a few seconds (optional)
+        // Return button to original state after a few seconds
         setTimeout(() => {
-            notification.style.display = 'none';
+            btn.setAttribute('data-bs-original-title', originalTitle);
+            tooltip.setContent({ '.tooltip-inner': originalTitle });
+            btn.querySelector('i').className = 'fas fa-copy';
+            tooltip.hide();
         }, 3000);
     }).catch(err => {
         console.error('Failed to copy text: ', err);

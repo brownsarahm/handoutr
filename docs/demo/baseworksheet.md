@@ -25,10 +25,13 @@ flowchart TD
     tA -->d1
 ```
 
+> hint, rendered as details 
+
 +++ 
 
-A propmt *with markdown* formatting
+A propmt *with markdown* formatting for a question with no seed
 
 ```open
 ```
 
+`hint in *markdown*, like the prompt, that will show up in the text template`

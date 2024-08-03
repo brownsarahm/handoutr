@@ -1,9 +1,10 @@
-<div class="list-group-item  mt-3 p-3 promptgroup" data-anchor-id="{id}">
+<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="{id}">
 
     <label class="printfmted printfillin" for="textarea-{id}"></label>
-    <!-- this element holds the raw markdown for the prompt, it is not displayed, but 
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
+    <label  for="prompt-{id}" aria-hidden="true" class="hidden" ></label>
     <textarea id="prompt-{id}" class="md-content md-template promptbox" aria-hidden="true"
         readonly>{prompt_text}</textarea>
     <div class="card">
@@ -20,6 +21,6 @@
                 {question_write_in}
             </div>
         </div>
-        <div class="card-footer printfillin printfmted">{hint}</div>
+        <div class="card-footer hint">{question_hint}</div>
     </div>
 </div>

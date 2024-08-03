@@ -166,15 +166,11 @@ async function printContent(className) {
     combinedPreviewDiv.innerHTML = concatenatedContent;
 
     // Make the combined-preview div visible for printing
-    combinedPreviewDiv.style.display = 'block';
+    // combinedPreviewDiv.style.display = 'block';
 
     // Trigger the print preview of the browser
     window.print();
 }
-// Hide the combined-preview div after printing
-// combinedPreviewDiv.style.display = 'none';
-// easymde1.togglePreview();
-// easymde2.togglePreview();
 
 // Function to combine text content of all textareas with a specific class on the page
 //  used for both copy and download markdown versions
@@ -206,16 +202,25 @@ function downloadCombinedText(classname,filename) {
 // Function to copy combined text content to the clipboard
 function copyCombinedTextToClipboard(classname,btnID) {
     const combinedText = combineTextAreas(classname);
+    const btn = document.getElementById(btnID);
+
+    const tooltip = bootstrap.Tooltip.getInstance(btn) || new bootstrap.Tooltip(btn);
+    const originalTitle = btn.getAttribute('data-bs-original-title');
+    // const notificationID = 'notification-' + btnID
 
     // Copy combined text content to clipboard
     navigator.clipboard.writeText(combinedText).then(() => {
-        alert('Combined text copied to clipboard!');
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
+        // notify with check mark and tooltip
+        tooltip.setContent({ '.tooltip-inner': 'Copied!' });
+        tooltip.show();
+        btn.querySelector('i').className = 'fa-solid fa-check';
 
-        // Hide notification after a few seconds (optional)
+        // Return button to original state after a few seconds
         setTimeout(() => {
-            notification.style.display = 'none';
+            btn.setAttribute('data-bs-original-title', originalTitle);
+            tooltip.setContent({ '.tooltip-inner': originalTitle });
+            btn.querySelector('i').className = 'fas fa-copy';
+            tooltip.hide();
         }, 3000);
     }).catch(err => {
         console.error('Failed to copy text: ', err);

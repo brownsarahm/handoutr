@@ -47,23 +47,28 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">About & Control</h5>
+                    <h2 class="offcanvas-title" id="offcanvasNavbarLabel">About & Control</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                           <h5 class="menusection">About</h5>
+                           <details<h3 class="menusection">About</h3>
 <p>This page is completely static, which makes the content you type private. There is no
     backend or connection
     to 3rd party sources that read the content, you can use 
-    <a href="https://themarkup.org/blacklight" target="_blank">blacklight</a> by the independent journalists at
+    <a href="https://themarkup.org/blacklight" target="_blank" aria-label="blacklight by journalists at The Markup">blacklight</a> by the independent journalists at
     <a href="https://themarkup.org/" target="_blank">The Markup</a> to check and confirm. 
-    You can work in the page and then save as either plain, easy to edit markdown
-    or formatted by printing to pdf or copy the template to your favorite app to write in.</p>
+</p>
+<h3 class="menusection">Usage</h3>
+<p>You can work in this page or elsewhere, as you prefer. On each textarea there is a guide button
+    <i class="fa fa-circle-info"></i> where you can learn more about the syntax and a preview button
+    <i class="fa fa-eye"></i> to see the text formatted or diagram rendered. 
+    Get a pdf that is filled in or ready to write on (eg on paper or a tablet) by printing or export
+    the markdown as a file or to your clipboard.</p>
                         </li>
                         <li class="list-group-item">
-                            <h5 class="menusection">Save your work</h5>
+                            <h3 class="menusection">Save your work</h3>
 <div class="btn-group d-flex" role="group" aria-label="Completed Worksheet" 
     aria-describedby="completedExpanation">
     <!-- the button ids are required to match handout.js -->
@@ -75,6 +80,11 @@
         data-bs-toggle="tooltip" data-bs-placement="top" title="Download as markdown">
         <i class="fas fa-download"></i>
     </button>
+    <!-- Notification element -->
+    <!-- <div id="notification-copy-btn" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Combined text copied to clipboard!</span>
+    </div> -->
     <button type="button" class="btn btn-primary flex-fill" id="copy-btn" aria-label="Copy as markdown"
         data-bs-toggle="tooltip" data-bs-placement="top" title="Copy as markdown">
         <i class="fas fa-copy"></i>
@@ -85,7 +95,7 @@
 </small>
                         </li>
                         <li class="list-group-item">
-                            <h5 class="menusection">Work Elsewhere</h5>
+                            <h3 class="menusection">Work Elsewhere</h3>
 <div class="btn-group d-flex" role="group" aria-label="Template" 
 aria-describedby="templateExpanation">
     <!-- the button ids are required to match handout.js -->
@@ -97,13 +107,18 @@ aria-describedby="templateExpanation">
         data-bs-toggle="tooltip" data-bs-placement="top" title="Download template">
         <i class="fas fa-download"></i>
     </button>
+    <!-- Notification element -->
+    <!-- <div id="notification-copy-tmplt-btn" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Template text copied to clipboard!</span>
+    </div> -->
     <button type="button" class="btn btn-primary flex-fill" id="copy-tmplt-btn" aria-label="Copy template"
         data-bs-toggle="tooltip" data-bs-placement="top" title="Copy template">
         <i class="fas fa-copy"></i>
     </button>
 </div>
 <small id="templateExpanation" class="form-text text-muted">
-    Export prompts only, without responses or seeding
+    Export prompts only, without textarea content or most hints
 </small>
                         </li>
                     </ul>
@@ -118,23 +133,21 @@ aria-describedby="templateExpanation">
 
 
     <div class="list-group list-group-numbered list-group-flush">
-        <div class="list-group-item  mt-3 p-3 promptgroup" data-anchor-id="q0">
+        <div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q0">
 
     <label class="printfmted printfillin" for="textarea-q0"></label>
-    <!-- this element holds the raw markdown for the prompt, it is not displayed, but 
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
+    <label  for="prompt-q0" aria-hidden="true" class="hidden" ></label>
     <textarea id="prompt-q0" class="md-content md-template promptbox" aria-hidden="true"
-        readonly>
-
-An Example question prompt
-
-</textarea>
+        readonly>An Example question prompt</textarea>
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button type="button" id="q0-preview" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
-<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" alt="markdown cheat-sheet for syntax in this box">
+<button type="button" id="q0-preview" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i class="fa fa-eye"></i></button>
+<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" 
+    aria-label="markdown cheat-sheet for syntax in this box" data-bs-toggle="tooltip" data-bs-title="markdown guide">
     <i class="fa-solid fa-circle-info"></i>
 </a>
 </div>
@@ -144,7 +157,6 @@ An Example question prompt
 
 
             <textarea id="textarea-q0" class="md-content ">pre-seeded content for the textarea, can be `markdown` for *style*
-
 </textarea>
             <div class="print-only printfillin" aria-hidden="true">
                 <!-- this is only for print view -->
@@ -158,32 +170,28 @@ An Example question prompt
 </div>
             </div>
         </div>
-        <div class="card-footer printfillin printfmted">
-
-hint, rendered as small text
-</div>
+        <div class="card-footer hint"><small class="printfillin printfmted"><p class="hint">hint, rendered as small text</p></small></div>
     </div>
 </div>
 
 <!----question --->
 
-<div class="list-group-item  mt-3 p-3 promptgroup" data-anchor-id="q1">
+<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q1">
 
     <label class="printfmted printfillin" for="textarea-q1"></label>
-    <!-- this element holds the raw markdown for the prompt, it is not displayed, but 
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
+    <label  for="prompt-q1" aria-hidden="true" class="hidden" ></label>
     <textarea id="prompt-q1" class="md-content md-template promptbox" aria-hidden="true"
-        readonly>
-
-A prompt that instructs the user to make connections in a template diagram
-
-</textarea>
+        readonly>A prompt that instructs the user to make connections in a template diagram</textarea>
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button class="btn btn-secondary" id="q1-preview"><i class="fa fa-eye"></i></button>
-<a href="https://mermaid.js.org/intro/syntax-reference.html" target="_blank" class="btn btn-secondary" alt="mermaid docs for how to make a diagram">
+<button class="btn btn-secondary" id="q1-preview" aria-label="toggle preview or type" data-bs-toggle="tooltip" data-bs-title="toggle preview"><i class="fa fa-eye"></i></button>
+<a href="https://mermaid.js.org/intro/syntax-reference.html" target="_blank" 
+    class="btn btn-secondary" aria-label="mermaid docs for how to make a diagram"
+    data-bs-toggle="tooltip" data-bs-title="mermaid guide">
     <!-- <i class="fas fa-book"></i> -->
 <i class="fa-solid fa-circle-info"></i>
 </a>
@@ -202,7 +210,6 @@ A prompt that instructs the user to make connections in a template diagram
     d3[definition 3]
     %% example connection syntax, add the rest and correct this one
     tA -->d1
-
 </textarea>
             <div class="print-only printfillin" aria-hidden="true">
                 <!-- this is only for print view -->
@@ -211,31 +218,30 @@ A prompt that instructs the user to make connections in a template diagram
 </div>
             </div>
         </div>
-        <div class="card-footer printfillin printfmted">
-
-</div>
+        <div class="card-footer hint"><details class="printfillin printfmted ">
+    <summary><i class="fa-regular fa-lightbulb"></i> Hint</summary>
+    <p class="hint">hint, rendered as details</p>
+</details></div>
     </div>
 </div>
 
 <!----question --->
 
-<div class="list-group-item  mt-3 p-3 promptgroup" data-anchor-id="q2">
+<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q2">
 
     <label class="printfmted printfillin" for="textarea-q2"></label>
-    <!-- this element holds the raw markdown for the prompt, it is not displayed, but 
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
+    <label  for="prompt-q2" aria-hidden="true" class="hidden" ></label>
     <textarea id="prompt-q2" class="md-content md-template promptbox" aria-hidden="true"
-        readonly> 
-
-A propmt *with markdown* formatting
-
-</textarea>
+        readonly>A propmt *with markdown* formatting for a question with no seed</textarea>
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button type="button" id="q2-preview" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
-<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" alt="markdown cheat-sheet for syntax in this box">
+<button type="button" id="q2-preview" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i class="fa fa-eye"></i></button>
+<a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" 
+    aria-label="markdown cheat-sheet for syntax in this box" data-bs-toggle="tooltip" data-bs-title="markdown guide">
     <i class="fa-solid fa-circle-info"></i>
 </a>
 </div>
@@ -258,22 +264,26 @@ A propmt *with markdown* formatting
 </div>
             </div>
         </div>
-        <div class="card-footer printfillin printfmted">
-
-</div>
+        <div class="card-footer hint"><div class="promptgroup">
+<label class="printfmted printfillin hint" for="hint-q2"></label>
+<!-- this textarea holds the raw markdown for the hint, it is not displayed, but 
+    is used for the export md and copy md buttons. the label above gets the rendered
+    html from this -->
+<textarea id="hint-q2" class="md-content md-template promptbox" aria-hidden="true" readonly>hint in *markdown*, like the prompt, that will show up in the text template</textarea>
+</div></div>
     </div>
 </div>
 
     </div>
     <!-- end of container -->
 
-
+<footer>made with <a href="https://brownsarahm.com/handoutr/">handoutr</a> by <a href="https://brownsarahm.com/">brownsarahm</a></footer>
 </main>
 
 
 <!-- print preview box, only displayed for printing; on button click will get content from
 preview boxes -->
-<div class="print-only">
+<div class="print-only" aria-hidden="true">
     <h2 class="source"> Print preview</h2>
     <div id="combined-preview"></div>
 </div>
@@ -283,7 +293,7 @@ preview boxes -->
 <script>
     // not a problem: double escape for python page build
     anchors.options = { placement: 'left', icon: '#' }
-    anchors.add(".promptgroup");
+    anchors.add(".prompttext");
 </script>
 
 
