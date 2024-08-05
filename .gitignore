@@ -6,3 +6,5 @@ demo-local
 *__pycache__
 *.egg-info/
 .DStore
+
+docs/_build

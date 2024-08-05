@@ -142,7 +142,7 @@ async function printContent(className) {
                     // Wait for the preview function to complete
                     setTimeout(() => {
                         resolve();
-                    }, 100); // Adjust the delay as necessary
+                    }, 100); 
                 } else {
                     resolve();
                 }
@@ -160,13 +160,9 @@ async function printContent(className) {
         await processDiv(div);
     }
 
-    // After all content is concatenated, do something with it
-    // Example: Set the content of a preview element
+    // After all content is concatenated put it in combined box
     const combinedPreviewDiv = document.getElementById('combined-preview');
     combinedPreviewDiv.innerHTML = concatenatedContent;
-
-    // Make the combined-preview div visible for printing
-    // combinedPreviewDiv.style.display = 'block';
 
     // Trigger the print preview of the browser
     window.print();
