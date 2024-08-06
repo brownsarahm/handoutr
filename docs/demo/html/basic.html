@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
 <!-- data-bs-theme="dark" -->
 
 <head>
@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Page title Heading</title>
+    <script src="darkmode.js">  </script>
     <!-- mermaid diagram -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <!-- anchors -->
@@ -32,17 +33,35 @@
 
 
 
-    <nav class="navbar bg-body-tertiary fixed-top source">
+    <nav class="navbar bg-body-tertiary fixed-top flex-wrap flex-lg-nowrap source " aria-label="Navigation">
         <div class="container-fluid">
             <!-- page title -->
             <div class="printfmted printfillin">
                 <h1>Page title Heading</h1>
             </div>
-            <!-- menu button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!--  flex-wrap ms-md-auto flex-row -->
+            <div class="navbar-nav ">
+                <div class="nav-item dropdown dropdown-center">
+                    <!-- align-items-center -->
+                    <!-- <button class="btn btn-link nav-link  py-2 px-0 px-lg-2 dropdown-toggle d-flex  "
+                    id="bd-theme"
+                        type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"
+                        aria-label="Toggle theme (auto)">
+                        <i class="fa-solid fa-moon"></i>
+                        <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                    </button> -->
+                    
+
+                    <!-- </ul> -->
+                </div>
+                <!-- menu button -->
+                    
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <!-- offcanvas -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
@@ -53,19 +72,50 @@
                 <div class="offcanvas-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                           <details<h3 class="menusection">About</h3>
-<p>This page is completely static, which makes the content you type private. There is no
+                            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+
+    <button type="button" class="btn btn-secondary flex-fill" data-bs-theme-value="light" aria-pressed="false">
+        <i class="fa-solid fa-sun"></i>
+        Light
+    </button>
+    <button type="button" class="btn btn-secondary flex-fill" data-bs-theme-value="auto" aria-pressed="false">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        Auto
+    </button>
+    <button type="button" class="btn btn-secondary flex-fill" data-bs-theme-value="dark" aria-pressed="true">
+        <i class="fa-solid fa-moon"></i>
+        Dark
+
+    </button>
+</div>
+                        </li>
+                        <li class="list-group-item">
+                           <div class ="accordion">
+<details class="accordion-item" aria-expanded="false">
+    <summary class="accordion-button "><h3 class="menusection accordion-header">About</h3></summary>
+
+    
+<p class="accordion-body">This page is completely static, which makes the content you type private. There is no
     backend or connection
     to 3rd party sources that read the content, you can use 
     <a href="https://themarkup.org/blacklight" target="_blank" aria-label="blacklight by journalists at The Markup">blacklight</a> by the independent journalists at
     <a href="https://themarkup.org/" target="_blank">The Markup</a> to check and confirm. 
 </p>
-<h3 class="menusection">Usage</h3>
-<p>You can work in this page or elsewhere, as you prefer. On each textarea there is a guide button
+
+</details>
+<details class="accordion-item" aria-expanded="false">
+    <summary class="accordion-button "><h3 class="menusection accordion-header">Usage</h3></summary>
+    
+    
+        <p class="accordion-body">You can work in this page or elsewhere, as you prefer. On each textarea there is a guide button
     <i class="fa fa-circle-info"></i> where you can learn more about the syntax and a preview button
     <i class="fa fa-eye"></i> to see the text formatted or diagram rendered. 
     Get a pdf that is filled in or ready to write on (eg on paper or a tablet) by printing or export
-    the markdown as a file or to your clipboard.</p>
+    the markdown as a file or to your clipboard.
+</p>
+
+</details>
+</div>
                         </li>
                         <li class="list-group-item">
                             <h3 class="menusection">Save your work</h3>
@@ -130,6 +180,7 @@ aria-describedby="templateExpanation">
 
 
 <main class="container mt-5 pt-5 source">
+
 
 
     <div class="list-group list-group-numbered list-group-flush">

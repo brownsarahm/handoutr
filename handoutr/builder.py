@@ -60,7 +60,8 @@ def build_page(source_text,
     # load base templates( these could be changed by settings later)
     page_info = {'about':load_template_file('control','about-main.html'),
                  'save':load_template_file('control','save.html'),
-                 'offline':load_template_file('control','offline.html')}
+                 'offline':load_template_file('control','offline.html'),
+                 'theme_control':load_template_file('control','theme-btngroup.html')}
     #  parse 
     segments = source_text.split('+++')
     # TODO: make more general, currently cannot hanld eif more than # title is in the first section

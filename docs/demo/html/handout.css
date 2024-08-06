@@ -14,7 +14,9 @@ textarea.promptbox {
     display: none;
 }
 
-
+#bd-theme-text {
+    display: none;
+}
 
 /* make space for the anchors */
 .anchorjs-link::after {

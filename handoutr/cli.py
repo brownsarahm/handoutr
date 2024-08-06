@@ -31,7 +31,7 @@ def build(filepath):
         f.write(handout_html)
 
     # copy supporting files
-    supporting_file_list = ['handout.js','handout.css']
+    supporting_file_list = ['handout.js','handout.css','darkmode.js']
     for file in supporting_file_list:
         file_content = load_template_file(file)
         with open(os.path.join(out_dir,file),'w') as f:

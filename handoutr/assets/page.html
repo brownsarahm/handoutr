@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
 <!-- data-bs-theme="dark" -->
 
 <head>
@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{tab_title}</title>
+    <script src="darkmode.js">  </script>
     <!-- mermaid diagram -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <!-- anchors -->
@@ -32,17 +33,35 @@
 
 
 
-    <nav class="navbar bg-body-tertiary fixed-top source">
+    <nav class="navbar bg-body-tertiary fixed-top flex-wrap flex-lg-nowrap source " aria-label="Navigation">
         <div class="container-fluid">
             <!-- page title -->
             <div class="printfmted printfillin">
                 <h1>{page_title}</h1>
             </div>
-            <!-- menu button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!--  flex-wrap ms-md-auto flex-row -->
+            <div class="navbar-nav ">
+                <div class="nav-item dropdown dropdown-center">
+                    <!-- align-items-center -->
+                    <!-- <button class="btn btn-link nav-link  py-2 px-0 px-lg-2 dropdown-toggle d-flex  "
+                    id="bd-theme"
+                        type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"
+                        aria-label="Toggle theme (auto)">
+                        <i class="fa-solid fa-moon"></i>
+                        <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                    </button> -->
+                    
+
+                    <!-- </ul> -->
+                </div>
+                <!-- menu button -->
+                    
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <!-- offcanvas -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
@@ -52,6 +71,9 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            {theme_control}
+                        </li>
                         <li class="list-group-item">
                            {about}
                         </li>
@@ -70,6 +92,7 @@
 
 
 <main class="container mt-5 pt-5 source">
+
 
 
     <div class="list-group list-group-numbered list-group-flush">
