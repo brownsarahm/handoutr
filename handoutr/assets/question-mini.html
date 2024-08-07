@@ -1,0 +1,26 @@
+<div class=" mt-3 p-3 md-source-group prompttext " data-md-group-id="prompt-{id}" data-anchor-id="{id}">
+<!-- list-group-item  -->
+    <div class="input-group d-flex">
+        <label class="printfmted printfillin input-group-text flex-fill" for="input-{id}" id="render-prompt-{id}"></label>
+            
+        
+            {question_input}
+            {question_preview}
+            {question_controller}
+          
+    </div>
+
+        <div class="hint">{question_hint}</div>
+        
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            {question_write_in}
+        </div>
+    
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
+        is used for the export md and copy md buttons. the label above gets the rendered
+        html from this -->
+        <label for="prompt-{id}" aria-hidden="true" class="hidden">hidden form label for hidden form element</label>
+        <textarea id="src-prompt-{id}" class="md-content md-template promptbox" aria-hidden="true"
+            readonly>{prompt_text}</textarea>
+</div>

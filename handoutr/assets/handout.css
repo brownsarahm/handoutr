@@ -36,6 +36,10 @@ textarea {
     height:500px;
 }
 
+.preview {
+    display: none;
+}
+
 /*  custom view for printing */
 @media print {
     .source {
@@ -54,6 +58,11 @@ textarea {
     .fillin hr{
         color:#545454;
         padding-top: .25in;
+    }
+
+    .date-writein{
+        color: #545454;
+
     }
 
     .print-only {

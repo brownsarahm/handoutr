@@ -1,26 +1,26 @@
-<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="{id}">
-
-    <label class="printfmted printfillin" for="textarea-{id}"></label>
+<div class="list-group-item  mt-3 p-3 prompttext md-source-group" data-md-group-id="prompt-{id}" data-anchor-id="{id}" >
+    <!-- <div class=">   -->
+    <label class="printfmted printfillin" for="input-{id}" id="render-prompt-{id}"></label>
     <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
-    <label  for="prompt-{id}" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
-    <textarea id="prompt-{id}" class="md-content md-template promptbox" aria-hidden="true"
+    <label  for="src-{id}" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
+    <textarea id="src-prompt-{id}" class="md-content md-template promptbox" aria-hidden="true"
         readonly>{prompt_text}</textarea>
+        <!-- </div> -->
     <div class="card">
         <div class="card-header">
             {question_controller}
         </div>
         <div class="card-body">
-            {question_preview}
-
 
             {question_input}
-            <div class="print-only printfillin" aria-hidden="true">
-                <!-- this is only for print view -->
-                {question_write_in}
-            </div>
+            {question_preview}
         </div>
         <div class="card-footer hint">{question_hint}</div>
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            {question_write_in}
+        </div>
     </div>
 </div>

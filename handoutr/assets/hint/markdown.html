@@ -1,7 +1,8 @@
-<div class="promptgroup">
-<label class="printfmted printfillin hint" for="hint-{id}"></label>
+<div class="md-source-group" data-md-group-id="hint-{id}">
+<label class="printfmted printfillin hint" for="hint-{id}" id="render-hint-{id}"></label>
 <!-- this textarea holds the raw markdown for the hint, it is not displayed, but 
-    is used for the export md and copy md buttons. the label above gets the rendered
+    is used for the export md and copy md buttons. the element above gets the rendered
     html from this -->
-<textarea id="hint-{id}" class="md-content md-template promptbox" aria-hidden="true" readonly>{hint_text}</textarea>
+<textarea  id="src-hint-{id}" class="md-content md-template promptbox"
+aria-hidden="true" readonly>{hint_text}</textarea>
 </div>

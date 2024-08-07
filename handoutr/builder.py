@@ -1,9 +1,11 @@
-from .questions import OpenQuestion, MermaidQuestion
+from .questions import OpenQuestion, MermaidQuestion,DateQuestion
 from .utils import load_template_file
 import click
+import yaml
 
 question_type_objs = {'open':OpenQuestion,
                   'mermaid':MermaidQuestion,
+                  'date':DateQuestion
 }
 
 def parse_question(id, question_segment):
@@ -30,9 +32,17 @@ def parse_question(id, question_segment):
     hint_cleaner = {'hidden':lambda s: s[1:].strip(),
                     'markdown':lambda s: s.replace('`',''),
                     'small':lambda s: s.strip()}
+    
+    # clean up
     hint_stripped = hint_md.strip()
-    hint_type = hint_typer.get(hint_stripped[0],'small')
-    hint_text = hint_cleaner[hint_type](hint_stripped)
+    
+    # clean if not empty, or pass on if empty
+    if hint_stripped:
+        hint_type = hint_typer.get(hint_stripped[0],'small')
+        hint_text = hint_cleaner[hint_type](hint_stripped)
+    else:
+        hint_type = 'small'
+        hint_text = hint_stripped
 
     # strip others
     prompt = prompt_in.strip()
@@ -61,9 +71,20 @@ def build_page(source_text,
     page_info = {'about':load_template_file('control','about-main.html'),
                  'save':load_template_file('control','save.html'),
                  'offline':load_template_file('control','offline.html'),
-                 'theme_control':load_template_file('control','theme-btngroup.html')}
-    #  parse 
-    segments = source_text.split('+++')
+                 'theme_control':load_template_file('control','theme-btngroup.html'),
+                 'description':'a handoutr page',
+                 'keywords':'page, worksheet',
+                 'author':'content author unspecified'}
+    # ---------------  parse overall
+    if source_text[:3] == '---':
+        _, header_yaml, body = source_text.split('---')
+        page_info.update(yaml.safe_load(header_yaml))
+    else: 
+        # TODO: warnings here? 
+        body = source_text
+
+    # split body up
+    segments = body.split('+++')
     # TODO: make more general, currently cannot hanld eif more than # title is in the first section
     header = segments[0].replace('#','').strip()
     questions_to_parse = segments[1:]

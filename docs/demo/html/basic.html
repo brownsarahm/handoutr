@@ -6,6 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="basic demo of handout worksheet">
+    <meta name="keywords" content="example, worksheet">
+    <meta name="author" content="Sarah M Brown">
+    <meta property="og:title" content="Page title Heading" />
+    <meta property="og:type" content="website" />
 
     <title>Page title Heading</title>
     <script src="darkmode.js">  </script>
@@ -184,19 +189,63 @@ aria-describedby="templateExpanation">
 
 
     <div class="list-group list-group-numbered list-group-flush">
-        <div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q0">
+        <div class=" mt-3 p-3 md-source-group prompttext " data-md-group-id="prompt-q0" data-anchor-id="q0">
+<!-- list-group-item  -->
+    <div class="input-group d-flex">
+        <label class="printfmted printfillin input-group-text flex-fill" for="input-q0" id="render-prompt-q0"></label>
+            
+        
+            <input type="date" id="input-q0" name="date-q0" value="" class="md-content flex-fill"/>
 
-    <label class="printfmted printfillin" for="textarea-q0"></label>
+
+            <div id="html-q0" class="printfmted preview flex-fill input-group-text" aria-hidden="true" data-previewfx="toggleDate"></div>
+            <!-- <div class="btn-group" role="group" aria-label="textbox controls"> -->
+    <button type="button" id="q0-preview" aria-label="toggle preview or type" class="btn btn-secondary"
+        data-bs-toggle="tooltip" data-bs-title="preview"><i class="fa fa-eye"></i></button>
+    <button type="button" id="q0-fillin" aria-label="set today" class="btn btn-secondary" onclick="insertDate('input-q0')"
+        data-bs-toggle="tooltip" data-bs-title="set to today"><i class="fa fa-clock"></i></button>
+    <!-- <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary"
+        aria-label="markdown cheat-sheet for syntax in this box" data-bs-toggle="tooltip"
+        data-bs-title="markdown guide">
+        <i class="fa-solid fa-circle-info"></i>
+    </a> -->
+<!-- </div> -->
+          
+    </div>
+
+        <div class="hint"><small class="printfillin printfmted"><p class="hint"></p></small></div>
+        
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            <div class="date-writein ">
+<h1>/ / </h1>
+</div>
+        </div>
+    
+    <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
+        is used for the export md and copy md buttons. the label above gets the rendered
+        html from this -->
+        <label for="prompt-q0" aria-hidden="true" class="hidden">hidden form label for hidden form element</label>
+        <textarea id="src-prompt-q0" class="md-content md-template promptbox" aria-hidden="true"
+            readonly>Date</textarea>
+</div>
+
+<!----question --->
+
+<div class="list-group-item  mt-3 p-3 prompttext md-source-group" data-md-group-id="prompt-q1" data-anchor-id="q1" >
+    <!-- <div class=">   -->
+    <label class="printfmted printfillin" for="input-q1" id="render-prompt-q1"></label>
     <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
-    <label  for="prompt-q0" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
-    <textarea id="prompt-q0" class="md-content md-template promptbox" aria-hidden="true"
+    <label  for="src-q1" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
+    <textarea id="src-prompt-q1" class="md-content md-template promptbox" aria-hidden="true"
         readonly>An Example question prompt</textarea>
+        <!-- </div> -->
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button type="button" id="q0-preview" aria-label="toggle preview or type" 
+<button type="button" id="q1-preview" aria-label="toggle preview or type" 
 class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i class="fa fa-eye"></i></button>
 <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" 
     aria-label="markdown cheat-sheet for syntax in this box" data-bs-toggle="tooltip" data-bs-title="markdown guide">
@@ -205,14 +254,15 @@ class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i cl
 </div>
         </div>
         <div class="card-body">
-            <div id="html-q0" class="printfmted" aria-hidden="true" data-previewfx="toggleHTML"></div>
 
-
-            <textarea id="textarea-q0" class="md-content ">pre-seeded content for the textarea, can be `markdown` for *style*
+            <textarea id="input-q1" class="md-content ">pre-seeded content for the textarea, can be `markdown` for *style*
 </textarea>
-            <div class="print-only printfillin" aria-hidden="true">
-                <!-- this is only for print view -->
-                <div class="fillin ">
+            <div id="html-q1" class="printfmted preview" aria-hidden="true" data-previewfx="toggleHTML"></div>
+        </div>
+        <div class="card-footer hint"><small class="printfillin printfmted"><p class="hint">hint, rendered as small text</p></small></div>
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            <div class="fillin ">
     <hr>
     <hr>
     <hr>
@@ -220,27 +270,26 @@ class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i cl
     <hr>
     <hr>
 </div>
-            </div>
         </div>
-        <div class="card-footer hint"><small class="printfillin printfmted"><p class="hint">hint, rendered as small text</p></small></div>
     </div>
 </div>
 
 <!----question --->
 
-<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q1">
-
-    <label class="printfmted printfillin" for="textarea-q1"></label>
+<div class="list-group-item  mt-3 p-3 prompttext md-source-group" data-md-group-id="prompt-q2" data-anchor-id="q2" >
+    <!-- <div class=">   -->
+    <label class="printfmted printfillin" for="input-q2" id="render-prompt-q2"></label>
     <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
-    <label  for="prompt-q1" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
-    <textarea id="prompt-q1" class="md-content md-template promptbox" aria-hidden="true"
+    <label  for="src-q2" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
+    <textarea id="src-prompt-q2" class="md-content md-template promptbox" aria-hidden="true"
         readonly>A prompt that instructs the user to make connections in a template diagram</textarea>
+        <!-- </div> -->
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button class="btn btn-secondary" id="q1-preview" aria-label="toggle preview or type" 
+<button class="btn btn-secondary" id="q2-preview" aria-label="toggle preview or type" 
 data-bs-toggle="tooltip" data-bs-title="toggle preview"><i class="fa fa-eye"></i></button>
 <a href="https://mermaid.js.org/intro/syntax-reference.html" target="_blank" 
     class="btn btn-secondary" aria-label="mermaid docs for how to make a diagram"
@@ -251,10 +300,8 @@ data-bs-toggle="tooltip" data-bs-title="toggle preview"><i class="fa fa-eye"></i
 </div>
         </div>
         <div class="card-body">
-            <pre id="pre-q1" class="mermaid printfmted" data-previewfx="toggleMermaidDiagram" aria-hidden="true"></pre>
 
-
-            <textarea id="textarea-q1" class="md-content mermaidquestion">flowchart TD
+            <textarea id="input-q2" class="md-content mermaidquestion">flowchart TD
     tA[term a]
     tB[term b]
     tC[term D]
@@ -264,35 +311,37 @@ data-bs-toggle="tooltip" data-bs-title="toggle preview"><i class="fa fa-eye"></i
     %% example connection syntax, add the rest and correct this one
     tA -->d1
 </textarea>
-            <div class="print-only printfillin" aria-hidden="true">
-                <!-- this is only for print view -->
-                <div class=" box">
-
-</div>
-            </div>
+            <pre id="pre-q2" class="mermaid printfmted preview" data-previewfx="toggleMermaidDiagram" aria-hidden="true"></pre>
         </div>
         <div class="card-footer hint"><details class="printfillin printfmted ">
     <summary><i class="fa-regular fa-lightbulb"></i> Hint</summary>
     <p class="hint">hint, rendered as details</p>
 </details></div>
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            <div class=" box">
+
+</div>
+        </div>
     </div>
 </div>
 
 <!----question --->
 
-<div class="list-group-item  mt-3 p-3 promptgroup prompttext" data-anchor-id="q2">
-
-    <label class="printfmted printfillin" for="textarea-q2"></label>
+<div class="list-group-item  mt-3 p-3 prompttext md-source-group" data-md-group-id="prompt-q3" data-anchor-id="q3" >
+    <!-- <div class=">   -->
+    <label class="printfmted printfillin" for="input-q3" id="render-prompt-q3"></label>
     <!-- this textarea holds the raw markdown for the prompt, it is not displayed, but 
     is used for the export md and copy md buttons. the label above gets the rendered
     html from this -->
-    <label  for="prompt-q2" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
-    <textarea id="prompt-q2" class="md-content md-template promptbox" aria-hidden="true"
+    <label  for="src-q3" aria-hidden="true" class="hidden" >hidden form label for hidden form element</label>
+    <textarea id="src-prompt-q3" class="md-content md-template promptbox" aria-hidden="true"
         readonly>A propmt *with markdown* formatting for a question with no seed</textarea>
+        <!-- </div> -->
     <div class="card">
         <div class="card-header">
             <div class="btn-group" role="group" aria-label="textbox controls">
-<button type="button" id="q2-preview" aria-label="toggle preview or type" 
+<button type="button" id="q3-preview" aria-label="toggle preview or type" 
 class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i class="fa fa-eye"></i></button>
 <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" class="btn btn-secondary" 
     aria-label="markdown cheat-sheet for syntax in this box" data-bs-toggle="tooltip" data-bs-title="markdown guide">
@@ -301,14 +350,22 @@ class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i cl
 </div>
         </div>
         <div class="card-body">
-            <div id="html-q2" class="printfmted" aria-hidden="true" data-previewfx="toggleHTML"></div>
 
-
-            <textarea id="textarea-q2" class="md-content ">
+            <textarea id="input-q3" class="md-content ">
 </textarea>
-            <div class="print-only printfillin" aria-hidden="true">
-                <!-- this is only for print view -->
-                <div class="fillin ">
+            <div id="html-q3" class="printfmted preview" aria-hidden="true" data-previewfx="toggleHTML"></div>
+        </div>
+        <div class="card-footer hint"><div class="md-source-group" data-md-group-id="hint-q3">
+<label class="printfmted printfillin hint" for="hint-q3" id="render-hint-q3"></label>
+<!-- this textarea holds the raw markdown for the hint, it is not displayed, but 
+    is used for the export md and copy md buttons. the element above gets the rendered
+    html from this -->
+<textarea  id="src-hint-q3" class="md-content md-template promptbox"
+aria-hidden="true" readonly>hint in *markdown*, like the prompt, that will show up in the text template</textarea>
+</div></div>
+        <div class="print-only printfillin" aria-hidden="true">
+            <!-- this is only for print view -->
+            <div class="fillin ">
     <hr>
     <hr>
     <hr>
@@ -316,15 +373,7 @@ class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="preview"><i cl
     <hr>
     <hr>
 </div>
-            </div>
         </div>
-        <div class="card-footer hint"><div class="promptgroup">
-<label class="printfmted printfillin hint" for="hint-q2"></label>
-<!-- this textarea holds the raw markdown for the hint, it is not displayed, but 
-    is used for the export md and copy md buttons. the label above gets the rendered
-    html from this -->
-<textarea id="hint-q2" class="md-content md-template promptbox" aria-hidden="true" readonly>hint in *markdown*, like the prompt, that will show up in the text template</textarea>
-</div></div>
     </div>
 </div>
 
@@ -361,13 +410,16 @@ preview boxes -->
 <script>
     //this will be processed by python first to fill in all of the curly brackets
 document.getElementById('q0-preview').addEventListener('click',
-    () => toggleHTML('q0', 'q0-preview'));
+    () => toggleDate('q0', 'q0-preview'));
 	//this will be processed by python first to fill in all of the curly brackets
 document.getElementById('q1-preview').addEventListener('click',
-    () => toggleMermaidDiagram('q1', 'q1-preview'));
+    () => toggleHTML('q1', 'q1-preview'));
 	//this will be processed by python first to fill in all of the curly brackets
 document.getElementById('q2-preview').addEventListener('click',
-    () => toggleHTML('q2', 'q2-preview'));
+    () => toggleMermaidDiagram('q2', 'q2-preview'));
+	//this will be processed by python first to fill in all of the curly brackets
+document.getElementById('q3-preview').addEventListener('click',
+    () => toggleHTML('q3', 'q3-preview'));
 
 </script>
 </body>

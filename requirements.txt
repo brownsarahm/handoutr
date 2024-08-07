@@ -6,3 +6,4 @@ sphinx
 sphinx-design
 sphinx-autobuild
 myst-parser
+pyyaml

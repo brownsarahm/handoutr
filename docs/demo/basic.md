@@ -1,4 +1,15 @@
+---
+description: basic demo of handout worksheet
+keywords: example, worksheet
+author: Sarah M Brown
+---
 # Page title Heading 
+
++++
+Date
+
+```date
+```
 
 +++
 

@@ -10,24 +10,27 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 //  Render the prompts
 // ------------------------------------------------------------------ 
 // Select all div elements with the class 'prompt'
-const promptList = document.querySelectorAll('.promptgroup');
+const promptList = document.querySelectorAll('.md-source-group');
 
 // Loop through each div with class 'prompt'
 promptList.forEach(prompt => {
-    // Find the textarea inside the div
-    const textarea = prompt.querySelector('.promptbox');
+    
+    const anchorId = prompt.getAttribute('data-md-group-id');
+    
+    const labelElement = document.getElementById(`render-${anchorId}`);
+    const promptElement = document.getElementById(`src-${anchorId}`);
+    
 
     // Get the Markdown text from the textarea
-    const markdownText = textarea.value;
+    const markdownText = promptElement.value;
 
     // Parse the Markdown text into HTML using marked.parse
     const htmlContent = marked.parse(markdownText);
 
-    // Select the first <p> element within the current .prompt div
-    const textAreaLabel = prompt.querySelector('label');
+
 
     // Set the innerHTML of the <p> element to the parsed HTML content
-    textAreaLabel.innerHTML = htmlContent;
+    labelElement.innerHTML = htmlContent;
 });
 
 // ------------------------------------------------------------------ 
@@ -36,7 +39,7 @@ promptList.forEach(prompt => {
 
 function toggleHTML(targetID,btnID) {
 
-    const textareaId = 'textarea-' + targetID;
+    const textareaId = 'input-' + targetID;
     const textarea = document.getElementById(textareaId);
     const divId = 'html-' + targetID;
     const div = document.getElementById(divId);
@@ -73,11 +76,50 @@ function toggleHTML(targetID,btnID) {
     }
 }
 
+// ------------- date
+
+function insertDate(targetID){
+    const dateInput = document.getElementById(targetID);
+    // Get current date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0]; 
+    dateInput.value = today;
+}
+
+
+function toggleDate(targetID, btnID) {
+    // get elements needed
+    const dateInputID = 'input-' + targetID
+    const dateInput = document.getElementById(dateInputID);
+
+    const previewId = 'html-' + targetID; // Get current date in YYYY-MM-DD format
+    const previewDiv = document.getElementById(previewId);
+    console.log(dateInput)
+    // Check if the date input value is not set or is empty
+    if (!dateInput.value) {
+        // Call the insertDate function with the targetID
+        insertDate(dateInputID);
+    }
+    // Toggle the 'active' class on or off of the element in the variable 'btn'
+    const btn = document.getElementById(btnID);
+    btn.classList.toggle('active');
+    // querySelector('input[type="date"]');
+
+    if (dateInput.style.display !== 'none') {
+        // if in text mode, switch to preview
+        dateInput.style.display = 'none'
+        previewDiv.style.display = 'block';
+        previewDiv.innerHTML =  dateInput.value ;
+    } else {
+        // in preview, set to text
+        dateInput.style.display = 'block'
+        previewDiv.style.display = 'none';
+    }
+}
 
 //------------- mermaid
 
 function toggleMermaidDiagram(targetID,btnID) {
-    const textareaId = 'textarea-' + targetID;
+    const textareaId = 'input-' + targetID;
     const textarea = document.getElementById(textareaId);
     const preId = 'pre-' + targetID;
     let pre = document.getElementById(preId);
@@ -170,19 +212,19 @@ async function printContent(className) {
 
 // Function to combine text content of all textareas with a specific class on the page
 //  used for both copy and download markdown versions
-function combineTextAreas(className) {
+function combineTextValues(className) {
     // Select all textarea elements with the specified class
-    const textareas = document.querySelectorAll(`textarea.${className}`);
+    const elements = document.querySelectorAll(`textarea.${className} , input.${className}`);
 
     // Use map to get the values of all textareas and join to concatenate them with newline characters
-    const combinedText = Array.from(textareas).map(textarea => textarea.value).join('\n');
+    const combinedText = Array.from(elements).map(element => element.value).join('\n');
 
     return combinedText;
 }
 
 // Function to download combined text content as a .md file
 function downloadCombinedText(classname,filename) {
-    const combinedText = combineTextAreas(classname);
+    const combinedText = combineTextValues(classname);
 
     // Download combined text content
     const blob = new Blob([combinedText], { type: 'text/plain' });
@@ -197,7 +239,7 @@ function downloadCombinedText(classname,filename) {
 
 // Function to copy combined text content to the clipboard
 function copyCombinedTextToClipboard(classname,btnID) {
-    const combinedText = combineTextAreas(classname);
+    const combinedText = combineTextValues(classname);
     const btn = document.getElementById(btnID);
 
     const tooltip = bootstrap.Tooltip.getInstance(btn) || new bootstrap.Tooltip(btn);
