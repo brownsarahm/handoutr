@@ -93,7 +93,7 @@ function toggleDate(targetID, btnID) {
 
     const previewId = 'html-' + targetID; // Get current date in YYYY-MM-DD format
     const previewDiv = document.getElementById(previewId);
-    console.log(dateInput)
+    
     // Check if the date input value is not set or is empty
     if (!dateInput.value) {
         // Call the insertDate function with the targetID
