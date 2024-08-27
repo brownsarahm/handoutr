@@ -46,3 +46,19 @@ A propmt *with markdown* formatting for a question with no seed
 ```
 
 `hint in *markdown*, like the prompt, that will show up in the text template`
+
++++
+
+A prompt for a grid, eg to fill in a 2x2:
+
+```grid
+* - 
+  - column1
+  - column two
+* - r1 title
+  - c1r1
+  - c2r1
+* - r2 title
+  - c1r2
+  - c2r2
+```

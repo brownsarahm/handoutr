@@ -62,7 +62,10 @@ textarea {
 
     .date-writein{
         color: #545454;
-
+        letter-spacing: 3em;
+        padding-left: 5em;
+        display: inline;
+        font-size: 15pt;
     }
 
     .print-only {

@@ -161,9 +161,7 @@ function toggleMermaidDiagram(targetID,btnID) {
 // Concatenate all items with printfmted or printfillin class, put them in a separate div
 //  that is only visible for printing and print 
 async function printContent(className) {
-    // Select all div elements with the specified class
-    const contentDivs = document.querySelectorAll(`.${className}`);
-
+    
     // Initialize a variable to hold the concatenated content
     let concatenatedContent = '';
 
@@ -196,6 +194,10 @@ async function printContent(className) {
             concatenatedContent += div.innerHTML;
         });
     }
+
+    // Select all div elements with the specified class
+
+    const contentDivs = document.querySelectorAll(`.${className}`);
 
     // Process each div sequentially
     for (const div of contentDivs) {

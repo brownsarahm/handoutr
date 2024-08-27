@@ -31,9 +31,10 @@ def build(filepath):
         f.write(handout_html)
 
     # copy supporting files
-    supporting_file_list = ['handout.js','handout.css','darkmode.js']
+    # TODO use listdir
+    supporting_file_list = ['handout.js','handout.css','darkmode.js','handoutr_dk.svg','handoutr_lt.svg','handoutr_ico.svg']
     for file in supporting_file_list:
-        file_content = load_template_file(file)
+        file_content = load_template_file('_site',file)
         with open(os.path.join(out_dir,file),'w') as f:
             f.write(file_content)
     

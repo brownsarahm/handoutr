@@ -24,9 +24,9 @@ class QuestionABC():
         '''
         #  load the template parts 
         #  the keys here are the items that appear in questions.html
-        components = {'question_controller':load_template_file(self.basepath,self.component_dir,'controller.html'),
-                      'question_input':load_template_file(self.basepath,self.component_dir,'input.html'),
-                      'question_write_in':load_template_file(self.basepath,self.component_dir,'write-in.html'),
+        components = {'question_controller':self.load_controller(),
+                      'question_input':self.load_input(),
+                      'question_write_in':self.load_write_in(),
                       'question_preview':load_template_file(self.basepath,self.component_dir,'preview.html'),
                       'question_hint':load_template_file('hint',self.hint_type +'.html')}
         self.info.update(components)
@@ -39,6 +39,15 @@ class QuestionABC():
         question_html = question_rough.format(**self.info)
         return question_html
     
+    def load_controller(self):
+        return load_template_file(self.basepath,self.component_dir,'controller.html')
+    
+    def load_input(self):
+        return load_template_file(self.basepath,self.component_dir,'input.html')
+    
+    def load_write_in(self):
+        return load_template_file(self.basepath,self.component_dir,'write-in.html')
+    
     def button_js(self):
         '''
         create the buttonjs for this question
@@ -50,21 +59,48 @@ class QuestionABC():
     
 
 class OpenQuestion(QuestionABC):
+    '''
+    single open text area
+    '''
     def __init__(self, id, prompt, starter,hint,hint_type):
         self.component_dir = 'open'
         self.function_name = 'toggleHTML'
         super().__init__(id, prompt, starter,hint,hint_type)
 
 class MermaidQuestion(QuestionABC):
+    '''
+    mermaid diagram
+    '''
     def __init__(self, id, prompt, starter,hint,hint_type):
         self.component_dir = 'mermaid'
         self.function_name = 'toggleMermaidDiagram'
         super().__init__(id, prompt, starter,hint,hint_type)
 
 class DateQuestion(QuestionABC):
-
+    '''
+    ununumbered date
+    '''
     template_file = 'question-mini.html'
     def __init__(self, id, prompt, starter,hint,hint_type):
         self.component_dir = 'date'
         self.function_name = 'toggleDate'
         super().__init__(id, prompt, starter,hint,hint_type)
+
+
+class GridQuestion(QuestionABC):
+    '''
+    grid of text areas, starter text defines the table
+    '''
+    def __init__(self, id, prompt, starter,hint,hint_type):
+        self.component_dir = 'open'
+        self.function_name = 'toggleTable'
+        # parse starter 
+        grid_list = [row.split('-')[1:] for row in starter.split('*')[1:]]
+        n_rows = len(grid_list)
+        n_cols = len(grid_list[0])
+        
+
+        super().__init__(id, prompt, starter,hint,hint_type)
+
+    def load_input(self):
+        return load_template_file(self.basepath,self.component_dir,'input.html')
